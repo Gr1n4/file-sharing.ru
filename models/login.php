@@ -6,13 +6,20 @@ class Login {
 	public static function action_select() {
 		$db = Db::connect();
 
-		session_start();
 
 		$login = $_POST['login'];
 		$password = $_POST['password'];
 
-		$db_query = $db->query("SELECT * FROM main WHERE login='$login'");
+		$db_query = $db->query("SELECT * FROM main WHERE login=" . $login);
 
-		echo $db_query;
+		$result = $db_query->fetch();
+
+		if ($db_query) {
+			$_SESSION['name'] = $login;
+			echo "Вход был успешно выполнен";
+		} else {
+			echo "неверно указан логин или пароль";
+		}
+		var_dump($result);
 	}
 }
