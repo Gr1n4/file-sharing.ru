@@ -9,6 +9,6 @@ class Checkin {
 		$login = $_POST['login'];
 		$password = $_POST['password'];
 		$db_query = $db->query("INSERT INTO main (login, password)
-			VALUES ('$login', '$password')")
+			VALUES ('$login', '$password')");
 	}
 }

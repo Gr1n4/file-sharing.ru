@@ -1,2 +1,2 @@
 <p>lol</p>
-<?php echo $_SESION['name'] ?>
+<?php echo $_SESSION['name'] ?>
