@@ -23,13 +23,13 @@ class User {
 
     $user = $result->fetch();
     if ($user) {
-      return $user['id'];
+      return $user['login'];
     }
     return false;
   }
 
-  public static function authentication($user_id) {
-    $_SESSION['user'] = $user_id;
+  public static function authentication($user_login) {
+    $_SESSION['user'] = $user_login;
   }
 
   public static function register($login, $password) {
@@ -44,8 +44,14 @@ class User {
       return false;
     } else {
       $sql = 'INSERT INTO main (login, password)
-            VALUES (:login, :password)';
+              VALUES (:login, :password)';
       $result = User::sql_inner($login, $password, $sql);
+
+      if (!file_exists(dir . '/data')) {
+        mkdir(dir . '/data', 0777, true);
+      }
+
+      $dir = mkdir(dir . '/data/' . $login, 0777, true);
 
       return $result;
     }

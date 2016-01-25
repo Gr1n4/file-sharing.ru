@@ -15,12 +15,12 @@ class User_controller {
 
       $errors = false;
 
-      $user_id = User::check_user($login, $password);
+      $user_login = User::check_user($login, $password);
 
-      if ($user_id == false) {
+      if ($user_login == false) {
         $errors[] = "Данные введены неверно";
       } else {
-        User::authentication($user_id);
+        User::authentication($user_login);
 
         header("Location: /");
       }
