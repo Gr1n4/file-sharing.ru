@@ -4,12 +4,10 @@ class Index_controller {
 	
 	function action_index() {
 		
-		if (isset($_SESSION['name'])) {
+		if (isset($_SESSION['user'])) {
 			include_once(dir . '/view/list.php');
 		} else {
-			?>
-			<a href="forms">Check in or Login</a>
-			<?php
+			include_once dir .'/view/index.php';
 		}
 	}
 }

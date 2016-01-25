@@ -1,2 +1,5 @@
-<p>lol</p>
-<?php echo $_SESSION['name'] ?>
+<?php 
+
+
+include_once dir . '/view/header.php';
+echo $_SESSION['user'];

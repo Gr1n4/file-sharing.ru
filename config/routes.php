@@ -1,10 +1,11 @@
 <?php
 
 return array(
-	'checkin' => 'checkin/index',
-	'login' => 'login/index',
+  'user/login' => 'user/login',
+  'user/register' => 'user/register',
+  'user/logout' => 'user/logout',
 	'upload' => 'upload/index',
 	'download' => 'download/index',
-	'forms' => 'forms/index',
+  'list' => 'index/index',
 	'' => 'index/index'
 );

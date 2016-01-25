@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.log {
+  width: 100px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: #333;
+  display: block;
+  color: #aaa;
+  text-decoration: none;
+  line-height: 30px;
+  text-align: center;
+}
