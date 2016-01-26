@@ -48,10 +48,11 @@ class User {
       $result = User::sql_inner($login, $password, $sql);
 
       if (!file_exists(dir . '/data')) {
-        mkdir(dir . '/data', 0777, true);
+        mkdir(dir . '/data', 0777);
       }
-
-      $dir = mkdir(dir . '/data/' . $login, 0777, true);
+      if (!file_exists(dir . '/data/' . $login)) {
+        $dir = mkdir(dir . '/data/' . $login, 0777);
+      }
 
       return $result;
     }
