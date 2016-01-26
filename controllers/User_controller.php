@@ -41,7 +41,7 @@ class User_controller {
       $push = User::register($login, $password);
       if ($push) {
         echo "Вы успешно зарегестрировались";
-        // header('Location: /');
+        header('Location: /login');
       } else {
         echo "Регистрация не удалась";
       }

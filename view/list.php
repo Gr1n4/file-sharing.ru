@@ -5,8 +5,9 @@ include_once dir . '/view/header.php';
 ?>
 
 <form enctype="multipart/form-data" action="/upload" method="post">
-Send this file: <input name="userfile" type="file">
-                <input type="submit" value="Send File">
+  <p>Выберите файл: </p>
+  <input name="userfile" type="file">
+  <input type="submit" value="Загрузка">
   </form>
 
 <ul>

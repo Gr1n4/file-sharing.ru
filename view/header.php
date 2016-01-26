@@ -14,4 +14,5 @@
     <a href="/login" class="log">Log in</a>
     <a href="/register" class="log">Register</a>
   <?php endif; ?>
+  <!-- <img src="/template/bg.jpg" class="log"> -->
   </header>

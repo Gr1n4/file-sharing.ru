@@ -13,8 +13,15 @@ class User {
     return $result;
   }
 
+  private static function create_dir($login) {
+    if (!file_exists(dir . '/data')) {
+        mkdir(dir . '/data', 0777);
+      }
+    if (!file_exists(dir . '/data/' . $login)) {
+      $dir = mkdir(dir . '/data/' . $login, 0777);
+    }
+  }
 
-  
   public static function check_user($login, $password) {
     
     $sql = 'SELECT * FROM main WHERE login = :login AND password = :password';
@@ -30,6 +37,8 @@ class User {
 
   public static function authentication($user_login) {
     $_SESSION['user'] = $user_login;
+
+    User::create_dir($user_login);
   }
 
   public static function register($login, $password) {
@@ -47,12 +56,7 @@ class User {
               VALUES (:login, :password)';
       $result = User::sql_inner($login, $password, $sql);
 
-      if (!file_exists(dir . '/data')) {
-        mkdir(dir . '/data', 0777);
-      }
-      if (!file_exists(dir . '/data/' . $login)) {
-        $dir = mkdir(dir . '/data/' . $login, 0777);
-      }
+      User::create_dir($login);
 
       return $result;
     }

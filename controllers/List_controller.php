@@ -9,9 +9,9 @@ class List_controller {
     $users_files = array_diff($users_files, array('.', '..'));
 
     if (isset($_SESSION['user'])) {
-    include_once dir . '/view/list.php';
+      include_once dir . '/view/list.php';
     } else header('Location: /');
-    
+
     return true;
   }
 }
