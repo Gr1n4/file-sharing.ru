@@ -2,12 +2,15 @@
 
 class User {
 
-  private static function sql_inner($login, $password, $sql) {
+  private static function sql_inner() {
     $db = Db::connect();
 
-    $result = $db->prepare($sql);
-    $result->bindParam(':login', $login, PDO::PARAM_INT);
-    $result->bindParam(':password', $password, PDO::PARAM_INT);
+    $fna = func_num_args();
+    $result = $db->prepare(func_get_arg(0));
+    $result->bindParam(':login', func_get_arg(1), PDO::PARAM_INT);
+    if (func_num_args() > 2) {
+      $result->bindParam(':password', func_get_arg(2), PDO::PARAM_INT);
+    }
     $result->execute();
 
     return $result;
@@ -26,7 +29,7 @@ class User {
     
     $sql = 'SELECT * FROM main WHERE login = :login AND password = :password';
 
-    $result = User::sql_inner($login, $password, $sql);
+    $result = User::sql_inner($sql, $login, $password);
 
     $user = $result->fetch();
     if ($user) {
@@ -43,18 +46,18 @@ class User {
 
   public static function register($login, $password) {
 
-    $sql = 'SELECT * FROM main WHERE login = :login AND password = :password';
+    $sql = 'SELECT * FROM main WHERE login = :login';
 
-    $result = User::sql_inner($login, $password, $sql);
+    $result = User::sql_inner($sql, $login);
 
     $user = $result->fetch();
     if ($user) {
-      echo "Данный Login уже используется";
+      echo "Данный Login уже используется.  ";
       return false;
     } else {
       $sql = 'INSERT INTO main (login, password)
               VALUES (:login, :password)';
-      $result = User::sql_inner($login, $password, $sql);
+      $result = User::sql_inner($sql, $login, $password);
 
       User::create_dir($login);
 
